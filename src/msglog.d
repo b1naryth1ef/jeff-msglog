@@ -105,7 +105,7 @@ class MsgLogPlugin : Plugin {
   @Command("stats")
   @CommandDescription("view message log db stats")
   @CommandGroup("search")
-  @CommandLevel(UserGroup.ADMIN)
+  @CommandLevel(Level.ADMIN)
   void onSearchStats(CommandEvent event) {
     ResultRange rows = db.execute(`
       SELECT guild_name, count(guild) as count
@@ -125,7 +125,7 @@ class MsgLogPlugin : Plugin {
   @Command("userinfo")
   @CommandDescription("view message log db user stats")
   @CommandGroup("search")
-  @CommandLevel(UserGroup.ADMIN)
+  @CommandLevel(Level.ADMIN)
   void onSearchUserInfo(CommandEvent event) {
     if (event.msg.mentions.length != 2) {
       event.msg.reply("Must supply user for stats");
@@ -153,7 +153,7 @@ class MsgLogPlugin : Plugin {
   @Command("global")
   @CommandDescription("search message logs globally")
   @CommandGroup("search")
-  @CommandLevel(UserGroup.ADMIN)
+  @CommandLevel(Level.ADMIN)
   void onSearchCommandGlobal(CommandEvent event) {
     Statement query = db.prepare(`
       SELECT
@@ -176,7 +176,7 @@ class MsgLogPlugin : Plugin {
   @Command("channel")
   @CommandDescription("search message logs in this channel")
   @CommandGroup("search")
-  @CommandLevel(UserGroup.MOD)
+  @CommandLevel(Level.MOD)
   void onSearchChannelCommand(CommandEvent event) {
     Statement query = db.prepare(`
       SELECT
@@ -201,7 +201,7 @@ class MsgLogPlugin : Plugin {
   @Command("guild")
   @CommandDescription("search message logs in this guild")
   @CommandGroup("search")
-  @CommandLevel(UserGroup.ADMIN)
+  @CommandLevel(Level.ADMIN)
   void onSearchGuildCommand(CommandEvent event) {
     if (!event.msg.guild) {
       return;
